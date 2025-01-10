@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0      # Version de MySQL (vous pouvez ajuster si nécessaire)
+    container_name: mysql_spring
+    restart: always
+    ports:
+      - "3306:3306"       # Mappe le port 3306 du conteneur au port 3306 de la machine hôte
+    environment:
+      MYSQL_ROOT_PASSWORD: 123  # Mot de passe de l'utilisateur root
+      MYSQL_DATABASE: db         # Nom de la base de données par défaut
+      MYSQL_USER: db_user                 # Utilisateur supplémentaire
+      MYSQL_PASSWORD: 123         # Mot de passe de cet utilisateur
+    volumes:
+      - mysql_data:/var/lib/mysql         # Persistance des données
+
+volumes:
+  mysql_data:                             # Déclare le volume pour la persistance
